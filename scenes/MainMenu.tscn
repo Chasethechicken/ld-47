@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/TextureButton.gd" type="Script" id=1]
+[ext_resource path="res://resources/Title-hover.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Level-1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/Title.png" type="Texture" id=4]
+[ext_resource path="res://resources/Title-click.png" type="Texture" id=5]
+[ext_resource path="res://themes/label.tres" type="Theme" id=6]
+[ext_resource path="res://resources/mute.png" type="Texture" id=7]
+[ext_resource path="res://scripts/ButtonMute.gd" type="Script" id=8]
+[ext_resource path="res://resources/unmute.png" type="Texture" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 64.0
+margin_right = -64.0
+margin_bottom = -56.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -700.0
+margin_top = -128.0
+margin_right = 700.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level_1 = ExtResource( 3 )
+
+[node name="ButtonMute" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = 220.0
+margin_right = 32.0
+margin_bottom = 284.0
+texture_normal = ExtResource( 9 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+mute = ExtResource( 9 )
+unmute = ExtResource( 7 )
+
+[node name="ButtonQuit" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.0
+margin_top = 320.0
+margin_right = 38.0
+margin_bottom = 24.5
+theme = ExtResource( 6 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_colors/font_color_hover = Color( 0.698039, 0.698039, 0.698039, 1 )
+text = "EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="StartGame" to="StartGame" method="_on_StartGame_pressed"]
+[connection signal="pressed" from="ButtonMute" to="ButtonMute" method="_on_ButtonMute_pressed"]
+[connection signal="pressed" from="ButtonQuit" to="StartGame" method="_on_ButtonQuit_pressed"]

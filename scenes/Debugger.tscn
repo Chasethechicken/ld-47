@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://themes/label.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/Variable.tscn" type="PackedScene" id=2]
+
+[node name="Debugger" type="ColorRect"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 512.0
+margin_bottom = 1568.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VariablesHeading" type="Label" parent="."]
+margin_left = 32.0
+margin_right = 448.0
+margin_bottom = 64.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.619608, 0.619608, 0.619608, 1 )
+text = "Variables"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VariablesContent" type="VBoxContainer" parent="."]
+margin_left = 44.0
+margin_top = 64.0
+margin_right = 448.0
+margin_bottom = 1504.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Variable_GameRunning" parent="VariablesContent" instance=ExtResource( 2 )]
+margin_right = 404.0
+margin_bottom = 31.0
+
+[node name="Name" parent="VariablesContent/Variable_GameRunning" index="0"]
+margin_right = 120.0
+text = "level_active"
+
+[node name="Equals" parent="VariablesContent/Variable_GameRunning" index="1"]
+margin_left = 124.0
+margin_right = 136.0
+
+[node name="Content" parent="VariablesContent/Variable_GameRunning" index="2"]
+margin_left = 140.0
+margin_right = 181.0
+text = "true"
+
+[node name="Variable_Time" parent="VariablesContent" instance=ExtResource( 2 )]
+margin_top = 35.0
+margin_right = 404.0
+margin_bottom = 66.0
+
+[node name="Name" parent="VariablesContent/Variable_Time" index="0"]
+margin_right = 46.0
+text = "time"
+
+[node name="Equals" parent="VariablesContent/Variable_Time" index="1"]
+margin_left = 50.0
+margin_right = 62.0
+
+[node name="Content" parent="VariablesContent/Variable_Time" index="2"]
+margin_left = 66.0
+margin_right = 78.0
+text = "0"
+
+[node name="Variable_Difficulty" parent="VariablesContent" instance=ExtResource( 2 )]
+margin_top = 70.0
+margin_right = 404.0
+margin_bottom = 101.0
+
+[node name="Name" parent="VariablesContent/Variable_Difficulty" index="0"]
+margin_right = 91.0
+text = "difficulty"
+
+[node name="Equals" parent="VariablesContent/Variable_Difficulty" index="1"]
+margin_left = 95.0
+margin_right = 107.0
+
+[node name="Content" parent="VariablesContent/Variable_Difficulty" index="2"]
+margin_left = 111.0
+margin_right = 123.0
+text = "1"
+
+[node name="Variable_LoopsSurvived" parent="VariablesContent" instance=ExtResource( 2 )]
+margin_top = 105.0
+margin_right = 404.0
+margin_bottom = 136.0
+
+[node name="Name" parent="VariablesContent/Variable_LoopsSurvived" index="0"]
+margin_right = 152.0
+text = "loops_survived"
+
+[node name="Equals" parent="VariablesContent/Variable_LoopsSurvived" index="1"]
+margin_left = 156.0
+margin_right = 168.0
+
+[node name="Content" parent="VariablesContent/Variable_LoopsSurvived" index="2"]
+margin_left = 172.0
+margin_right = 184.0
+text = "0"
+
+[editable path="VariablesContent/Variable_GameRunning"]
+
+[editable path="VariablesContent/Variable_Time"]
+
+[editable path="VariablesContent/Variable_Difficulty"]
+
+[editable path="VariablesContent/Variable_LoopsSurvived"]

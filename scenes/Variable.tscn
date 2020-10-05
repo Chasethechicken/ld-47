@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://themes/variable.tres" type="Theme" id=1]
+
+[node name="Variable" type="HBoxContainer"]
+margin_right = 117.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="."]
+margin_bottom = 31.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.619608, 0.619608, 0.619608, 1 )
+valign = 1
+
+[node name="Equals" type="Label" parent="."]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 31.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.619608, 0.619608, 0.619608, 1 )
+text = ": "
+valign = 1
+
+[node name="Content" type="Label" parent="."]
+margin_left = 20.0
+margin_right = 20.0
+margin_bottom = 31.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.619608, 0.619608, 0.619608, 1 )
+valign = 1

@@ -1,0 +1,252 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scenes/Code.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Debugger.tscn" type="PackedScene" id=2]
+[ext_resource path="res://themes/code.tres" type="Theme" id=3]
+[ext_resource path="res://scripts/GameOverMenu.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Level-1.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="GameOverMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+comments_page = "itch.io"
+rating_page = "ldjam.com"
+variable_time = NodePath("Background/Debugger/VariablesContent/Variable_Time/Content")
+variable_difficulty = NodePath("Background/Debugger/VariablesContent/Variable_Difficulty/Content")
+variable_loops_survived = NodePath("Background/Debugger/VariablesContent/Variable_LoopsSurvived/Content")
+level_1 = ExtResource( 6 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Debugger" parent="Background" instance=ExtResource( 2 )]
+anchor_left = 0.033
+anchor_top = 0.059
+anchor_right = 0.182
+anchor_bottom = 0.94
+margin_left = 0.639999
+margin_top = 0.279995
+margin_right = 185.56
+margin_bottom = 630.8
+rect_scale = Vector2( 0.606277, 0.601644 )
+
+[node name="VariablesHeading" parent="Background/Debugger" index="0"]
+anchor_left = 0.068
+anchor_right = 0.951
+anchor_bottom = 0.04
+margin_left = -0.0279999
+margin_right = 0.0789795
+margin_bottom = 0.719997
+
+[node name="VariablesContent" parent="Background/Debugger" index="1"]
+anchor_left = 0.093
+anchor_top = 0.04
+anchor_right = 0.953
+anchor_bottom = 0.951
+margin_left = 0.196999
+margin_top = 0.719997
+margin_right = -0.863037
+margin_bottom = -0.482056
+
+[node name="Content" parent="Background/Debugger/VariablesContent/Variable_GameRunning" index="2"]
+margin_right = 187.0
+text = "false"
+
+[node name="Code" parent="Background" instance=ExtResource( 1 )]
+anchor_left = 0.215
+anchor_top = 0.059
+anchor_right = 0.955
+anchor_bottom = 0.941
+margin_left = 3.19998
+margin_top = 0.279995
+margin_right = 945.4
+margin_bottom = 633.72
+rect_scale = Vector2( 0.600001, 0.600001 )
+
+[node name="Markers" parent="Background/Code" index="0"]
+visible = false
+
+[node name="Path" parent="Background/Code" index="1"]
+anchor_left = 0.013
+anchor_right = 1.0
+anchor_bottom = 0.04
+margin_left = 1.281
+margin_right = -123.0
+margin_bottom = 0.559994
+
+[node name="LineNumbers" parent="Background/Code" index="2"]
+anchor_left = 0.014
+anchor_top = 0.04
+anchor_right = 0.054
+anchor_bottom = 0.948
+margin_left = -1.082
+margin_top = 0.559994
+margin_right = 0.397995
+margin_bottom = 0.471924
+
+[node name="Code" type="RichTextLabel" parent="Background/Code"]
+anchor_left = 0.072
+anchor_top = 0.04
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.136017
+margin_top = 0.559994
+theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[color=#dd66cc]try[/color] {
+	[color=#dd66cc]while[/color] ([color=#3366dd]true[/color]) {
+		[color=#22cc22]GameResult[/color] [color=#77bbff]result[/color] = [color=#dddd22]playTheGame[/color]();
+		[color=#dd66cc]if[/color] ([color=#77bbff]result[/color].[color=#77bbff]loops_survived[/color] > [color=#77bbff]highscore[/color]) {
+            [color=#77bbff]highscore[/color] = [color=#77bbff]result[/color].[color=#77bbff]loops_survived[/color]
+			[color=#dddd22]shareHighscore[/color]([color=#77bbff]result[/color].[color=#77bbff]loops_survived[/color]);
+		}
+	}
+} [color=#dd66cc]catch[/color] ([color=#22cc22]PlayerExitedTheGameException[/color] [color=#77bbff]e[/color]) {
+	[color=#22cc22]System[/color].[color=#dddd22]exit[/color]([color=#bbffbb]0[/color]);
+} [color=#dd66cc]finally[/color] {
+	[color=#dddd22]rateTheGame[/color]();
+}"
+text = "try {
+	while (true) {
+		GameResult result = playTheGame();
+		if (result.loops_survived > highscore) {
+            highscore = result.loops_survived
+			shareHighscore(result.loops_survived);
+		}
+	}
+} catch (PlayerExitedTheGameException e) {
+	System.exit(0);
+} finally {
+	rateTheGame();
+}"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonPlay" type="Button" parent="Background/Code"]
+margin_left = 1030.63
+margin_top = 268.65
+margin_right = 1515.63
+margin_bottom = 377.65
+theme = ExtResource( 3 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.133333, 0 )
+custom_colors/font_color_hover = Color( 0.984314, 0.709804, 0.0588235, 1 )
+custom_colors/font_color_pressed = Color( 0.8, 0.384314, 0.0784314, 1 )
+text = "playTheGame"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonShareScore" type="Button" parent="Background/Code"]
+visible = false
+margin_left = 409.86
+margin_top = 583.652
+margin_right = 936.86
+margin_bottom = 686.652
+theme = ExtResource( 3 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 2 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.133333, 0 )
+custom_colors/font_color_hover = Color( 0.984314, 0.709804, 0.0588235, 1 )
+custom_colors/font_color_pressed = Color( 0.8, 0.384314, 0.0784314, 1 )
+text = "shareHighscore"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonExit" type="Button" parent="Background/Code"]
+margin_left = 515.77
+margin_top = 1000.17
+margin_right = 638.77
+margin_bottom = 1103.17
+theme = ExtResource( 3 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 3 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.133333, 0 )
+custom_colors/font_color_hover = Color( 0.984314, 0.709804, 0.0588235, 1 )
+custom_colors/font_color_pressed = Color( 0.8, 0.384314, 0.0784314, 1 )
+text = "exit"
+
+[node name="ButtonRate" type="Button" parent="Background/Code"]
+visible = false
+margin_left = 249.839
+margin_top = 1208.35
+margin_right = 713.839
+margin_bottom = 1311.35
+theme = ExtResource( 3 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
+custom_styles/normal = SubResource( 4 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.133333, 0 )
+custom_colors/font_color_hover = Color( 0.984314, 0.709804, 0.0588235, 1 )
+custom_colors/font_color_pressed = Color( 0.8, 0.384314, 0.0784314, 1 )
+text = "rateTheGame"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Background/Code/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="Background/Code/ButtonShareScore" to="." method="_on_ButtonShareScore_pressed"]
+[connection signal="pressed" from="Background/Code/ButtonExit" to="." method="_on_ButtonExit_pressed"]
+[connection signal="pressed" from="Background/Code/ButtonRate" to="." method="_on_ButtonRate_pressed"]
+
+[editable path="Background/Debugger"]
+
+[editable path="Background/Debugger/VariablesContent/Variable_GameRunning"]
+
+[editable path="Background/Debugger/VariablesContent/Variable_Time"]
+
+[editable path="Background/Debugger/VariablesContent/Variable_Difficulty"]
+
+[editable path="Background/Debugger/VariablesContent/Variable_LoopsSurvived"]
+
+[editable path="Background/Code"]
